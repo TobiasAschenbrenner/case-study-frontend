@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -17,7 +18,7 @@ import { confirmPasswordValidator } from 'src/app/validators/confirm-password.va
 })
 export default class RegisterComponent implements OnInit {
   fb = inject(FormBuilder);
-
+  authService = inject(AuthService);
   registerForm!: FormGroup;
 
   ngOnInit(): void {
@@ -49,6 +50,13 @@ export default class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.registerForm.value);
+    this.authService.registerService(this.registerForm.value).subscribe({
+      next: (res) => {
+        alert('User Created Successfully');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
