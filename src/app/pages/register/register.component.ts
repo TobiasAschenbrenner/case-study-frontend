@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,4 +9,28 @@ import { CommonModule } from '@angular/common';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export default class RegisterComponent {}
+export default class RegisterComponent implements OnInit {
+  fb = inject(FormBuilder);
+
+  registerForm!: FormGroup;
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(4)]),
+      ],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(8)]),
+      ],
+      confirmPassword: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(8)]),
+      ],
+    });
+  }
+}
