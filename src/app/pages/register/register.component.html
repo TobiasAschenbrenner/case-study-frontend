@@ -48,6 +48,13 @@
         class="text-red-500"
         >Username is required</span
       >
+      <span
+        *ngIf="registerForm.controls['username'].errors?.['minlength']"
+        class="text-red-500"
+        >Username must be at least
+        {{ registerForm.controls['username'].errors?.['minlength'].requiredLength }}
+        characters long
+      </span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
@@ -63,6 +70,9 @@
         "
         class="text-red-500"
         >Email is required</span
+      >
+      <span *ngIf="registerForm.hasError('email', 'email')" class="text-red-500"
+        >Email is invalid</span
       >
     </div>
     <div class="flex flex-col mt-4 mb-1">
@@ -80,6 +90,13 @@
         class="text-red-500"
         >Password is required</span
       >
+      <span
+        *ngIf="registerForm.controls['password'].errors?.['minlength']"
+        class="text-red-500"
+        >Password must be at least
+        {{ registerForm.controls['password'].errors?.['minlength'].requiredLength }}
+        characters long
+      </span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
@@ -95,6 +112,13 @@
         "
         class="text-red-500"
         >Confirm Password is required</span
+      >
+      <span
+        *ngIf="
+          registerForm.hasError('confirmPasswordValidator', 'confirmPassword')
+        "
+        class="text-red-500"
+        >Password didn't match</span
       >
     </div>
     <button
