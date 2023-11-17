@@ -20,12 +20,15 @@ export class AuthService {
   }
 
   sendEmailService(email: string) {
-    return this.http.post<any>(`${API_BASE_URL.authServiceApi}login`, {
+    return this.http.post<any>(`${API_BASE_URL.authServiceApi}send-email`, {
       email: email,
     });
   }
 
   resetPasswordService(resetObj: any) {
-    return this.http.post<any>(`${API_BASE_URL.authServiceApi}login`, resetObj);
+    return this.http.post<any>(
+      `${API_BASE_URL.authServiceApi}reset-password`,
+      resetObj
+    );
   }
 }
