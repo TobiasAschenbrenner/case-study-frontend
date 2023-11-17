@@ -7,23 +7,28 @@
     </span>
   </div>
   <div class="nav-items">
-    <span
-      class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-      >Welcome User</span
-    >
-    <span
-      routerLink="/register"
-      class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-      >Register</span
-    >
-    <span
-      routerLink="/login"
-      class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-      >Login</span
-    >
-    <span
-      class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-      >Logout</span
-    >
+    <ng-container *ngIf="!isLoggedIn">
+      <span
+        routerLink="/register"
+        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        >Register</span
+      >
+      <span
+        routerLink="/login"
+        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        >Login</span
+      >
+    </ng-container>
+    <ng-container *ngIf="isLoggedIn">
+      <span
+        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        >Welcome User</span
+      >
+      <span
+        routerLink="/"
+        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        >Logout</span
+      >
+    </ng-container>
   </div>
 </nav>
