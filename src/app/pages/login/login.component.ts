@@ -39,6 +39,8 @@ export default class LoginComponent {
       },
       error: (err) => {
         console.log(err);
+        alert('Invalid Credentials');
+        this.loginForm.reset();
       },
     });
   }
