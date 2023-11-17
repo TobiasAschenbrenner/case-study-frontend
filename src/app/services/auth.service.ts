@@ -18,4 +18,14 @@ export class AuthService {
   loginService(loginObj: any) {
     return this.http.post<any>(`${API_BASE_URL.authServiceApi}login`, loginObj);
   }
+
+  sendEmailService(email: string) {
+    return this.http.post<any>(`${API_BASE_URL.authServiceApi}login`, {
+      email: email,
+    });
+  }
+
+  resetPasswordService(resetObj: any) {
+    return this.http.post<any>(`${API_BASE_URL.authServiceApi}login`, resetObj);
+  }
 }

@@ -43,7 +43,7 @@ export default class ResetComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((val) => {
       this.token = val['token'];
-      console.log(this.token);
+      // console.log(this.token);
     });
   }
 
