@@ -12,14 +12,16 @@ export class AuthService {
 
   registerService(registerObj: any) {
     return this.http.post<any>(
-      `${API_BASE_URL.authServiceApi}register`,
+      `${API_BASE_URL.authServiceApi}auth/register`,
       registerObj
     );
   }
 
   loginService(loginObj: any) {
     return this.http
-      .post<any>(`${API_BASE_URL.authServiceApi}login`, loginObj)
+      .post<any>(`${API_BASE_URL.authServiceApi}auth/login`, loginObj, {
+        withCredentials: true,
+      })
       .pipe(
         tap((res) => {
           this.setSession(res);
@@ -40,19 +42,28 @@ export class AuthService {
   }
 
   sendEmailService(email: string) {
-    return this.http.post<any>(`${API_BASE_URL.authServiceApi}send-email`, {
-      email: email,
-    });
+    return this.http.post<any>(
+      `${API_BASE_URL.authServiceApi}auth/send-email`,
+      {
+        email: email,
+      }
+    );
   }
 
   resetPasswordService(resetObj: any) {
     return this.http.post<any>(
-      `${API_BASE_URL.authServiceApi}reset-password`,
+      `${API_BASE_URL.authServiceApi}auth/reset-password`,
       resetObj
     );
   }
 
   isLoggedIn() {
     return !!localStorage.getItem('user_id');
+  }
+
+  getUserById(userId: string) {
+    return this.http.get<any>(`${API_BASE_URL.authServiceApi}user/${userId}`, {
+      withCredentials: true,
+    });
   }
 }
