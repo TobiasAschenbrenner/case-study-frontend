@@ -31,13 +31,11 @@ export class AuthService {
 
   private setSession(authResult: any) {
     localStorage.setItem('user_id', authResult.data._id);
-    localStorage.setItem('username', authResult.data.username);
     this.isLoggedIn$.next(true);
   }
 
   logout() {
     localStorage.removeItem('user_id');
-    localStorage.removeItem('username');
     this.isLoggedIn$.next(false);
   }
 
