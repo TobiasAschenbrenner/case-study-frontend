@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../app.config';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,24 @@ export class AuthService {
   }
 
   loginService(loginObj: any) {
-    return this.http.post<any>(`${API_BASE_URL.authServiceApi}login`, loginObj);
+    return this.http
+      .post<any>(`${API_BASE_URL.authServiceApi}login`, loginObj)
+      .pipe(
+        tap((res) => {
+          this.setSession(res);
+        })
+      );
+  }
+
+  private setSession(authResult: any) {
+    localStorage.setItem('user_id', authResult.data._id);
+    this.isLoggedIn$.next(true);
+  }
+
+  logout() {
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('username');
+    this.isLoggedIn$.next(false);
   }
 
   sendEmailService(email: string) {
