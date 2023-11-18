@@ -12,14 +12,25 @@ import { CommonModule } from '@angular/common';
 export default class HomeComponent implements OnInit {
   authService = inject(AuthService);
   userProfile: any;
+  allUsers!: any[];
+  isAdmin: boolean = false;
 
   ngOnInit() {
     const userId = localStorage.getItem('user_id');
     if (userId) {
       this.authService.getUserById(userId).subscribe({
         next: (profile) => {
-          console.log(profile);
           this.userProfile = profile;
+          this.isAdmin = profile.data.isAdmin;
+
+          if (this.isAdmin) {
+            this.authService.getAllUsers().subscribe({
+              next: (response: any) => {
+                this.allUsers = response.data;
+              },
+              error: (err) => console.error('Error fetching all users:', err),
+            });
+          }
         },
         error: (err) => {
           console.error('Error fetching user profile:', err);

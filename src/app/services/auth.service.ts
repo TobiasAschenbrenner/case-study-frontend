@@ -66,4 +66,10 @@ export class AuthService {
       withCredentials: true,
     });
   }
+
+  getAllUsers() {
+    return this.http.get<any[]>(`${API_BASE_URL.authServiceApi}user`, {
+      withCredentials: true,
+    });
+  }
 }
