@@ -8,7 +8,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 })
 export class AuthService {
   http = inject(HttpClient);
-  isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  isLoggedIn$ = new BehaviorSubject<boolean>(this.isLoggedIn());
 
   registerService(registerObj: any) {
     return this.http.post<any>(
