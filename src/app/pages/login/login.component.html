@@ -13,10 +13,10 @@
           loginForm.hasError('required', 'email') &&
           loginForm.controls['email'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
-      <span *ngIf="loginForm.hasError('email', 'email')" class="text-red-500"
+      <span *ngIf="loginForm.hasError('email', 'email')" class="text-red-400"
         >Diese E-Mail-Adresse ist ungültig!</span
       >
     </div>
@@ -32,7 +32,7 @@
           loginForm.hasError('required', 'password') &&
           loginForm.controls['password'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
     </div>

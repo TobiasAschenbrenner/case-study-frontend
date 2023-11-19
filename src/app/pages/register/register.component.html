@@ -15,7 +15,7 @@
           registerForm.hasError('required', 'firstName') &&
           registerForm.controls['firstName'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
     </div>
@@ -31,7 +31,7 @@
           registerForm.hasError('required', 'lastName') &&
           registerForm.controls['lastName'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
     </div>
@@ -47,12 +47,12 @@
           registerForm.hasError('required', 'username') &&
           registerForm.controls['username'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
       <span
         *ngIf="registerForm.controls['username'].errors?.['minlength']"
-        class="text-red-500"
+        class="text-red-400"
         >Der Benutzername muss mindestens
         {{ registerForm.controls['username'].errors?.['minlength'].requiredLength }}
         Zeichen lang sein!
@@ -70,10 +70,10 @@
           registerForm.hasError('required', 'email') &&
           registerForm.controls['email'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
-      <span *ngIf="registerForm.hasError('email', 'email')" class="text-red-500"
+      <span *ngIf="registerForm.hasError('email', 'email')" class="text-red-400"
         >Diese E-Mail-Adresse ist ungültig!</span
       >
     </div>
@@ -89,12 +89,12 @@
           registerForm.hasError('required', 'password') &&
           registerForm.controls['password'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
       <span
         *ngIf="registerForm.controls['password'].errors?.['minlength']"
-        class="text-red-500"
+        class="text-red-400"
         >Das Passwort muss mindestens
         {{ registerForm.controls['password'].errors?.['minlength'].requiredLength }}
         Zeichen lang sein!
@@ -112,7 +112,7 @@
           registerForm.hasError('required', 'confirmPassword') &&
           registerForm.controls['confirmPassword'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
       <span
@@ -120,7 +120,7 @@
           registerForm.hasError('confirmPasswordValidator', 'confirmPassword')
         "
         class="text-red"
-        class="text-red-500"
+        class="text-red-400"
         >Passwörter stimmten nicht überein!</span
       >
     </div>

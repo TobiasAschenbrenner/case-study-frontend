@@ -15,12 +15,12 @@
           resetForm.hasError('required', 'password') &&
           resetForm.controls['password'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
       <span
         *ngIf="resetForm.controls['password'].errors?.['minlength']"
-        class="text-red-500"
+        class="text-red-400"
         >Das Passwort muss mindestens
         {{ resetForm.controls['password'].errors?.['minlength'].requiredLength }}
         Zeichen lang sein!
@@ -38,14 +38,14 @@
           resetForm.hasError('required', 'confirmPassword') &&
           resetForm.controls['confirmPassword'].dirty
         "
-        class="text-red-500"
+        class="text-red-400"
         >Das Feld darf nich leer sein!</span
       >
       <span
         *ngIf="
           resetForm.hasError('confirmPasswordValidator', 'confirmPassword')
         "
-        class="text-red-500"
+        class="text-red-400"
         >Passwörter stimmten nicht überein!</span
       >
     </div>
