@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { EmailService } from 'src/app/services/email/email.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -18,7 +18,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export default class ForgetPasswordComponent implements OnInit {
   forgetForm!: FormGroup;
   fb = inject(FormBuilder);
-  authService = inject(AuthService);
+  authService = inject(EmailService);
 
   ngOnInit(): void {
     this.forgetForm = this.fb.group({
@@ -27,7 +27,7 @@ export default class ForgetPasswordComponent implements OnInit {
   }
 
   sendEmail() {
-    this.authService.sendEmailService(this.forgetForm.value.email).subscribe({
+    this.authService.sendEmail(this.forgetForm.value.email).subscribe({
       next: (res) => {
         alert('Email Sent Successfully');
         this.forgetForm.reset();

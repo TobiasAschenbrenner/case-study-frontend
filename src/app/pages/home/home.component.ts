@@ -1,4 +1,4 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.component.scss'],
 })
 export default class HomeComponent implements OnInit {
-  authService = inject(AuthService);
+  authService = inject(UserService);
   userProfile: any;
   allUsers!: any[];
   isAdmin: boolean = false;
