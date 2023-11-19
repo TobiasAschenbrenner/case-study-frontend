@@ -18,8 +18,7 @@ import { RouterModule } from '@angular/router';
 })
 export default class ForgetPasswordComponent implements OnInit {
   forgetForm!: FormGroup;
-  fb = inject(FormBuilder);
-  authService = inject(EmailService);
+  constructor(private fb: FormBuilder, private emailService: EmailService) {}
 
   ngOnInit(): void {
     this.forgetForm = this.fb.group({
@@ -27,15 +26,17 @@ export default class ForgetPasswordComponent implements OnInit {
     });
   }
 
-  sendEmail() {
-    this.authService.sendEmail(this.forgetForm.value.email).subscribe({
-      next: (res) => {
-        alert('Email Sent Successfully');
-        this.forgetForm.reset();
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  sendEmail(): void {
+    if (this.forgetForm.valid) {
+      this.emailService.sendEmail(this.forgetForm.value.email).subscribe({
+        next: (res) => {
+          alert('Email Sent Successfully');
+          this.forgetForm.reset();
+        },
+        error: (err) => {
+          alert('Failed to send email. Please try again later.');
+        },
+      });
+    }
   }
 }
