@@ -7,11 +7,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { EmailService } from 'src/app/services/email/email.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-forget-password',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.scss'],
 })
