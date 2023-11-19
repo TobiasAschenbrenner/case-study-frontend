@@ -1,10 +1,12 @@
-<div class="lg:w-3/6 mt-10 p-10 shadow-lg mx-auto">
-  <h3 class="text-3xl text-center font-semibold py-5">Registrierformular</h3>
+<div class="lg:w-3/6 mt-10 p-10 shadow mx-auto bg-gray-900">
+  <h3 class="text-3xl text-center font-semibold py-5 text-white">
+    Registrierformular
+  </h3>
   <form [formGroup]="registerForm" class="flex flex-col">
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="firstName"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="text"
         placeholder="Vorname"
       />
@@ -20,7 +22,7 @@
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="lastName"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="text"
         placeholder="Name"
       />
@@ -36,7 +38,7 @@
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="username"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="text"
         placeholder="Nutzername"
       />
@@ -59,7 +61,7 @@
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="email"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="text"
         placeholder="E-Mail-Adresse"
       />
@@ -78,7 +80,7 @@
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="password"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="password"
         placeholder="Passwort"
       />
@@ -101,7 +103,7 @@
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="confirmPassword"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="password"
         placeholder="Passwort wiederholen"
       />
@@ -117,6 +119,7 @@
         *ngIf="
           registerForm.hasError('confirmPasswordValidator', 'confirmPassword')
         "
+        class="text-red"
         class="text-red-500"
         >Passwörter stimmten nicht überein!</span
       >
@@ -125,14 +128,16 @@
       [disabled]="registerForm.invalid"
       [class.disabled]="registerForm.invalid"
       (click)="register()"
-      class="bg-indigo-500 p-2 rounded mt-3 text-white"
+      class="bg-green-500 p-2 rounded mt-3 text-white hover:bg-green-600"
     >
       Registrieren
     </button>
   </form>
   <div class="flex justify-center mt-5">
-    <span>Haben Sie schon einen Account?</span>
-    <a routerLink="/login" class="text-indigo-600 ml-2 cursor-pointer"
+    <span class="text-white">Haben Sie schon einen Account?</span>
+    <a
+      routerLink="/login"
+      class="text-green-500 ml-2 cursor-pointer hover:text-green-600"
       >Zum Login</a
     >
   </div>
