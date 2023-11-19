@@ -1,31 +1,31 @@
-<nav
+<header
   class="w-full flex justify-between items-center p-5 bg-indigo-500 shadow-lg"
 >
   <div class="logo">
-    <span class="text-gray-200 text-4xl flex justify-start items-center">
+    <h1 class="text-gray-200 text-4xl flex justify-start items-center">
       Challenge
-    </span>
+    </h1>
   </div>
-  <div class="nav-items">
+  <nav class="nav-items">
     <ng-container *ngIf="!isLoggedIn">
-      <span
+      <a
         routerLink="/register"
         class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-        >Register</span
+        >Register</a
       >
-      <span
+      <a
         routerLink="/login"
         class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-        >Login</span
+        >Login</a
       >
     </ng-container>
     <ng-container *ngIf="isLoggedIn">
-      <span
+      <a
         routerLink="/"
         (click)="logout()"
         class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-        >Logout</span
+        >Logout</a
       >
     </ng-container>
-  </div>
-</nav>
+  </nav>
+</header>
