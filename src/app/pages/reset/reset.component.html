@@ -1,12 +1,14 @@
 <div class="lg:w-3/6 mt-10 p-10 shadow-lg mx-auto">
-  <h3 class="text-3xl text-center font-semibold py-5">Reset Password</h3>
+  <h3 class="text-3xl text-center font-semibold py-5">
+    Bitte setzen Sie Ihr Passwort!
+  </h3>
   <form [formGroup]="resetForm" class="flex flex-col">
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="password"
         class="p-2 border border-gray-300 rounded"
         type="text"
-        placeholder="Password"
+        placeholder="Neues Passwort"
       />
       <span
         *ngIf="
@@ -14,14 +16,14 @@
           resetForm.controls['password'].dirty
         "
         class="text-red-500"
-        >Password is required</span
+        >Das Feld darf nich leer sein!</span
       >
       <span
         *ngIf="resetForm.controls['password'].errors?.['minlength']"
         class="text-red-500"
-        >Password must be at least
+        >Das Passwort muss mindestens
         {{ resetForm.controls['password'].errors?.['minlength'].requiredLength }}
-        characters long
+        Zeichen lang sein!
       </span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
@@ -29,7 +31,7 @@
         formControlName="confirmPassword"
         class="p-2 border border-gray-300 rounded"
         type="text"
-        placeholder="Confirm Password"
+        placeholder="Neues Passwort wiederholen"
       />
       <span
         *ngIf="
@@ -37,14 +39,14 @@
           resetForm.controls['confirmPassword'].dirty
         "
         class="text-red-500"
-        >Confirm Password is required</span
+        >Das Feld darf nich leer sein!</span
       >
       <span
         *ngIf="
           resetForm.hasError('confirmPasswordValidator', 'confirmPassword')
         "
         class="text-red-500"
-        >Password didn't match</span
+        >Passwörter stimmten nicht überein!</span
       >
     </div>
     <button
@@ -54,7 +56,7 @@
       (click)="reset()"
       class="bg-indigo-500 p-2 rounded mt-3 text-white"
     >
-      Reset Password
+      Daten bestätigen
     </button>
   </form>
 </div>

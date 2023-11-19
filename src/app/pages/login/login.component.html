@@ -6,7 +6,7 @@
         formControlName="email"
         class="p-2 border border-gray-300 rounded"
         type="text"
-        placeholder="Email"
+        placeholder="E-Mail-Adresse"
       />
       <span
         *ngIf="
@@ -14,10 +14,10 @@
           loginForm.controls['email'].dirty
         "
         class="text-red-500"
-        >Email is required</span
+        >Das Feld darf nich leer sein!</span
       >
       <span *ngIf="loginForm.hasError('email', 'email')" class="text-red-500"
-        >Email is invalid</span
+        >Diese E-Mail-Adresse ist ungültig!</span
       >
     </div>
     <div class="flex flex-col mt-4 mb-1">
@@ -25,7 +25,7 @@
         formControlName="password"
         class="p-2 border border-gray-300 rounded"
         type="text"
-        placeholder="Password"
+        placeholder="Passwort"
       />
       <span
         *ngIf="
@@ -33,7 +33,7 @@
           loginForm.controls['password'].dirty
         "
         class="text-red-500"
-        >Password is required</span
+        >Das Feld darf nich leer sein!</span
       >
     </div>
     <button
@@ -47,10 +47,10 @@
   </form>
   <div class="flex justify-between mt-5">
     <a routerLink="/forget-password" class="text-indigo-600 ml-2 cursor-pointer"
-      >Forget Password?</a
+      >Passwort vergessen?</a
     >
     <a routerLink="/register" class="text-indigo-600 ml-2 cursor-pointer"
-      >Register Here</a
+      >Hier registrieren</a
     >
   </div>
 </div>
