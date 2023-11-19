@@ -18,13 +18,13 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export default class RegisterComponent implements OnInit {
-  fb = inject(FormBuilder);
-  authService = inject(AuthService);
-  router = inject(Router);
-
   registerForm!: FormGroup;
 
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -52,6 +52,8 @@ export default class RegisterComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {}
+
   register() {
     this.authService.register(this.registerForm.value).subscribe({
       next: (res) => {
@@ -60,7 +62,7 @@ export default class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.log(err);
+        console.log('Registration error:', err);
       },
     });
   }
