@@ -41,10 +41,7 @@ export default class RegisterComponent implements OnInit {
           '',
           Validators.compose([Validators.required, Validators.minLength(8)]),
         ],
-        confirmPassword: [
-          '',
-          Validators.compose([Validators.required, Validators.minLength(8)]),
-        ],
+        confirmPassword: ['', Validators.required],
       },
       {
         validator: confirmPasswordValidator('password', 'confirmPassword'),
