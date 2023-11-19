@@ -1,6 +1,6 @@
-<header class="w-full flex justify-between items-center p-5 bg-indigo-500">
+<header class="w-full flex justify-between items-center p-5 bg-gray-900">
   <div class="logo">
-    <h1 class="text-gray-200 text-4xl flex justify-start items-center">
+    <h1 class="text-white text-4xl flex justify-start items-center">
       Challenge
     </h1>
   </div>
@@ -8,12 +8,12 @@
     <ng-container *ngIf="!isLoggedIn">
       <a
         routerLink="/register"
-        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        class="text-xl cursor-pointer text-white font-bold m-3 hover:underline hover:text-green-500"
         >Registrieren</a
       >
       <a
         routerLink="/login"
-        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        class="text-xl cursor-pointer text-white font-bold m-3 hover:underline hover:text-green-500"
         >Login</a
       >
     </ng-container>
@@ -21,7 +21,7 @@
       <a
         routerLink="/"
         (click)="logout()"
-        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
+        class="text-xl cursor-pointer text-white font-bold m-3 hover:underline hover:text-green-500"
         >Logout</a
       >
     </ng-container>
