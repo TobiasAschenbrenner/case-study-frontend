@@ -35,13 +35,13 @@ export default class LoginComponent {
   login() {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        alert('User Logged In Successfully');
+        console.log('User Logged In Successfully');
         this.router.navigate(['home']);
         this.loginForm.reset();
       },
       error: (err) => {
         console.log(err);
-        alert('Invalid Credentials');
+        console.log('Failed to login');
         this.loginForm.reset();
       },
     });

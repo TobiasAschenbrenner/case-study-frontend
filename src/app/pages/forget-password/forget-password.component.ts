@@ -30,11 +30,11 @@ export default class ForgetPasswordComponent implements OnInit {
     if (this.forgetForm.valid) {
       this.emailService.sendEmail(this.forgetForm.value.email).subscribe({
         next: (res) => {
-          alert('Email Sent Successfully');
+          console.log('Email Sent Successfully');
           this.forgetForm.reset();
         },
         error: (err) => {
-          alert('Failed to send email. Please try again later.');
+          console.log('Failed to send email', err);
         },
       });
     }
