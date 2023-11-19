@@ -19,14 +19,14 @@ import { PasswordService } from 'src/app/services/password/password.service';
 })
 export default class ResetComponent implements OnInit {
   resetForm!: FormGroup;
-  fb = inject(FormBuilder);
-  activatedRoute = inject(ActivatedRoute);
-  router = inject(Router);
-  authService = inject(PasswordService);
-
   token!: string;
 
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private passwordService: PasswordService
+  ) {
     this.resetForm = this.fb.group(
       {
         password: [
@@ -42,26 +42,32 @@ export default class ResetComponent implements OnInit {
         validator: confirmPasswordValidator('password', 'confirmPassword'),
       }
     );
+  }
 
+  ngOnInit(): void {
     this.activatedRoute.params.subscribe((val) => {
       this.token = val['token'];
     });
   }
 
   reset() {
-    let resetObj = {
-      token: this.token,
-      password: this.resetForm.value.password,
-    };
-    this.authService.resetPassword(resetObj).subscribe({
-      next: (res) => {
-        alert('Password Reset Successfully');
-        this.resetForm.reset();
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    if (this.resetForm.valid) {
+      const resetObj = {
+        token: this.token,
+        password: this.resetForm.value.password,
+      };
+
+      this.passwordService.resetPassword(resetObj).subscribe({
+        next: (res) => {
+          console.log('Password Reset Successfully');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Reset error:', err);
+        },
+      });
+    } else {
+      console.log('Invalid form or token');
+    }
   }
 }
