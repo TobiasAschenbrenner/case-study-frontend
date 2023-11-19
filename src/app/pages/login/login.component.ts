@@ -17,18 +17,20 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent {
-  fb = inject(FormBuilder);
-  authService = inject(AuthService);
-  router = inject(Router);
+  loginForm: FormGroup;
 
-  loginForm!: FormGroup;
-
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required])],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
+
+  ngOnInit(): void {}
 
   login() {
     this.authService.login(this.loginForm.value).subscribe({
