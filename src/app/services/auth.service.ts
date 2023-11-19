@@ -1,27 +1,52 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../app.config';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
+interface User {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface AuthResponse {
+  success: boolean;
+  data: User;
+  token: string;
+}
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  http = inject(HttpClient);
-  isLoggedIn$ = new BehaviorSubject<boolean>(this.isLoggedIn());
+  private isLoggedInSubject = new BehaviorSubject<boolean>(
+    this.hasValidSession()
+  );
+  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  registerService(registerObj: any) {
-    return this.http.post<any>(
+  constructor(private http: HttpClient) {}
+
+  register(registerObj: object): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
       `${API_BASE_URL.authServiceApi}auth/register`,
       registerObj
     );
   }
 
-  loginService(loginObj: any) {
+  login(loginObj: object): Observable<AuthResponse> {
     return this.http
-      .post<any>(`${API_BASE_URL.authServiceApi}auth/login`, loginObj, {
-        withCredentials: true,
-      })
+      .post<AuthResponse>(
+        `${API_BASE_URL.authServiceApi}auth/login`,
+        loginObj,
+        {
+          withCredentials: true,
+        }
+      )
       .pipe(
         tap((res) => {
           this.setSession(res);
@@ -29,45 +54,47 @@ export class AuthService {
       );
   }
 
-  private setSession(authResult: any) {
+  private setSession(authResult: AuthResponse): void {
     localStorage.setItem('user_id', authResult.data._id);
-    this.isLoggedIn$.next(true);
+    this.isLoggedInSubject.next(true);
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('user_id');
-    this.isLoggedIn$.next(false);
+    this.isLoggedInSubject.next(false);
   }
 
-  sendEmailService(email: string) {
+  sendEmailService(email: string): Observable<any> {
     return this.http.post<any>(
       `${API_BASE_URL.authServiceApi}auth/send-email`,
-      {
-        email: email,
-      }
+      { email }
     );
   }
 
-  resetPasswordService(resetObj: any) {
+  resetPasswordService(resetObj: object): Observable<any> {
     return this.http.post<any>(
       `${API_BASE_URL.authServiceApi}auth/reset-password`,
       resetObj
     );
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return !!localStorage.getItem('user_id');
   }
 
-  getUserById(userId: string) {
+  getUserById(userId: string): Observable<any> {
     return this.http.get<any>(`${API_BASE_URL.authServiceApi}user/${userId}`, {
       withCredentials: true,
     });
   }
 
-  getAllUsers() {
-    return this.http.get<any[]>(`${API_BASE_URL.authServiceApi}user`, {
+  getAllUsers(): Observable<any[]> {
+    return this.http.get<User[]>(`${API_BASE_URL.authServiceApi}user`, {
       withCredentials: true,
     });
+  }
+
+  private hasValidSession(): boolean {
+    return this.isLoggedIn();
   }
 }

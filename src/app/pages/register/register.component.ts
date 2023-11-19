@@ -53,7 +53,7 @@ export default class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authService.registerService(this.registerForm.value).subscribe({
+    this.authService.register(this.registerForm.value).subscribe({
       next: (res) => {
         alert('User Created Successfully');
         this.registerForm.reset();

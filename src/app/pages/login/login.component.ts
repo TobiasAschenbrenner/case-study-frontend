@@ -31,7 +31,7 @@ export default class LoginComponent {
   }
 
   login() {
-    this.authService.loginService(this.loginForm.value).subscribe({
+    this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
         alert('User Logged In Successfully');
         this.router.navigate(['home']);
