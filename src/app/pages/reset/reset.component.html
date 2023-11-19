@@ -1,12 +1,12 @@
-<div class="lg:w-3/6 mt-10 p-10 mx-auto">
-  <h3 class="text-3xl text-center font-semibold py-5">
+<div class="lg:w-3/6 mt-10 p-10 mx-auto bg-gray-900">
+  <h3 class="text-3xl text-center font-semibold py-5 text-white">
     Bitte setzen Sie Ihr Passwort!
   </h3>
   <form [formGroup]="resetForm" class="flex flex-col">
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="password"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="password"
         placeholder="Neues Passwort"
       />
@@ -29,7 +29,7 @@
     <div class="flex flex-col mt-4 mb-1">
       <input
         formControlName="confirmPassword"
-        class="p-2 border border-gray-300 rounded"
+        class="p-2 border border-gray-600 rounded bg-gray-700 text-white placeholder-gray-400"
         type="password"
         placeholder="Neues Passwort wiederholen"
       />
@@ -54,7 +54,7 @@
       [disabled]="resetForm.invalid"
       [class.disabled]="resetForm.invalid"
       (click)="reset()"
-      class="bg-indigo-500 p-2 rounded mt-3 text-white"
+      class="bg-green-500 p-2 rounded mt-3 text-white hover:bg-green-600"
     >
       Daten bestätigen
     </button>
