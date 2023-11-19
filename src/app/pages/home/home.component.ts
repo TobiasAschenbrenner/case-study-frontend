@@ -1,5 +1,5 @@
 import { UserService } from 'src/app/services/user/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
@@ -30,26 +30,26 @@ interface AllUser {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export default class HomeComponent implements OnInit {
+export default class HomeComponent implements OnInit, OnDestroy {
   userProfile!: User;
   allUsers!: AllUser;
   allUsersArray: BaseUser[] = [];
   isAdmin: boolean = false;
-  private subscription = new Subscription();
+  private subscriptions = new Subscription();
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     const userId = localStorage.getItem('user_id');
     if (userId) {
-      this.subscription.add(
+      this.subscriptions.add(
         this.userService.getUserById(userId).subscribe({
           next: (user: User) => {
             this.userProfile = user;
             this.isAdmin = user.data.isAdmin;
 
             if (this.isAdmin) {
-              this.subscription.add(
+              this.subscriptions.add(
                 this.userService.getAllUsers().subscribe({
                   next: (users: AllUser) => {
                     this.allUsersArray = Object.values(users.data);
@@ -66,5 +66,8 @@ export default class HomeComponent implements OnInit {
         })
       );
     }
+  }
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 }
