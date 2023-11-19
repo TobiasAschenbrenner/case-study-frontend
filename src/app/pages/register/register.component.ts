@@ -56,13 +56,27 @@ export default class RegisterComponent implements OnInit {
 
   register() {
     this.authService.register(this.registerForm.value).subscribe({
-      next: (res) => {
+      next: (registerRes) => {
         console.log('User Created Successfully');
+
+        const loginCredentials = {
+          email: this.registerForm.value.email,
+          password: this.registerForm.value.password,
+        };
         this.registerForm.reset();
-        this.router.navigate(['/login']);
+
+        this.authService.login(loginCredentials).subscribe({
+          next: (loginRes) => {
+            console.log('User Logged In Successfully');
+            this.router.navigate(['/home']);
+          },
+          error: (loginErr) => {
+            console.error('Login error:', loginErr);
+          },
+        });
       },
-      error: (err) => {
-        console.log('Registration error:', err);
+      error: (registerErr) => {
+        console.log('Registration error:', registerErr);
       },
     });
   }
