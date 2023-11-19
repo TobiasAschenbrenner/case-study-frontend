@@ -3,17 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { API_BASE_URL } from '../../app.config';
 import { Observable } from 'rxjs';
 
-interface User {
+interface BaseUser {
   _id: string;
   firstName: string;
   lastName: string;
+  username: string;
   email: string;
-  password: string;
-  role: string;
-  createdAt: Date;
-  updatedAt: Date;
+  profilePicture: string;
+  isAdmin: boolean;
+}
+
+interface User {
+  data: BaseUser;
+}
+
+interface AllUser {
   data: {
-    isAdmin: boolean;
+    [key: number]: BaseUser;
   };
 }
 
@@ -29,8 +35,8 @@ export class UserService {
     });
   }
 
-  getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${API_BASE_URL.authServiceApi}user`, {
+  getAllUsers(): Observable<AllUser> {
+    return this.http.get<AllUser>(`${API_BASE_URL.authServiceApi}user`, {
       withCredentials: true,
     });
   }
