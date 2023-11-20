@@ -32,10 +32,7 @@ describe('LoginComponent', () => {
     mockAuthService = jasmine.createSpyObj('AuthService', ['login']);
 
     TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        RouterTestingModule.withRoutes([]), // No need for DummyHomeComponent now
-      ],
+      imports: [ReactiveFormsModule, RouterTestingModule.withRoutes([])],
       providers: [
         { provide: AuthService, useValue: mockAuthService },
         FormBuilder,
@@ -58,7 +55,7 @@ describe('LoginComponent', () => {
   });
 
   it('should call AuthService login on form submit and navigate on success', () => {
-    const router = TestBed.inject(Router); // Inject the router
+    const router = TestBed.inject(Router);
     spyOn(router, 'navigate');
 
     const mockAuthResponse: AuthResponse = {

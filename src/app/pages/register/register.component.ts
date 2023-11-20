@@ -65,7 +65,7 @@ export default class RegisterComponent implements OnInit {
         this.authService.login(loginCredentials).subscribe({
           next: (loginRes) => {
             console.log('User Logged In Successfully');
-            this.router.navigate(['/home']);
+            this.router.navigate(['home']);
           },
           error: (loginErr) => {
             console.error('Login error:', loginErr);
