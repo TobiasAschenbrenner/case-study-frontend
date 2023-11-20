@@ -1,5 +1,5 @@
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,

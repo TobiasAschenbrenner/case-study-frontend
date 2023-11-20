@@ -1,5 +1,6 @@
+import { Subscription } from 'rxjs';
 import { confirmPasswordValidator } from './../../validators/confirm-password.validator';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
@@ -17,9 +18,10 @@ import { PasswordService } from 'src/app/services/password/password.service';
   templateUrl: './reset.component.html',
   styleUrls: ['./reset.component.scss'],
 })
-export default class ResetComponent implements OnInit {
+export default class ResetComponent implements OnInit, OnDestroy {
   resetForm!: FormGroup;
   token!: string;
+  private subscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -42,7 +44,7 @@ export default class ResetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((val) => {
+    this.subscription = this.activatedRoute.params.subscribe((val) => {
       this.token = val['token'];
     });
   }
@@ -66,5 +68,9 @@ export default class ResetComponent implements OnInit {
     } else {
       console.log('Invalid form or token');
     }
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
