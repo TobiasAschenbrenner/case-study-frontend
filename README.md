@@ -43,7 +43,7 @@ You can start the development server in one of two ways:
 - Using npm:
   `npm start`
 
-Open your browser and navigate to `http://localhost:4200/`
+Open your browser and navigate to http://localhost:4200
 
 ### Running Unit Tests
 
