@@ -15,7 +15,7 @@ interface User {
   updatedAt: Date;
 }
 
-interface AuthResponse {
+export interface AuthResponse {
   success: boolean;
   data: User;
   token: string;
