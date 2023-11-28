@@ -6,11 +6,11 @@ This is the frontend part of an application created for a case study during an a
 
 ## Features
 
-**User Authentication:** Secure login and registration system.
-**Profile Management:** Users can view their profiles.
-**Admin Functionality:** Admin users can view a list of all registered users.
-**Password Recovery:** Features for forgetting and resetting passwords.
-**Responsive Design:** Utilizes Tailwind for a responsive and modern UI.
+- **User Authentication:** Secure login and registration system.
+- **Profile Management:** Users can view their profiles.
+- **Admin Functionality:** Admin users can view a list of all registered users.
+- **Password Recovery:** Features for forgetting and resetting passwords.
+- **Responsive Design:** Utilizes Tailwind for a responsive and modern UI.
 
 ## Getting Started
 
