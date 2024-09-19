@@ -27,7 +27,7 @@ export default class ResetComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private passwordService: PasswordService
+    private passwordService: PasswordService,
   ) {
     this.resetForm = this.fb.group(
       {
@@ -39,7 +39,7 @@ export default class ResetComponent implements OnInit, OnDestroy {
       },
       {
         validator: confirmPasswordValidator('password', 'confirmPassword'),
-      }
+      },
     );
   }
 
@@ -57,7 +57,7 @@ export default class ResetComponent implements OnInit, OnDestroy {
       };
 
       this.passwordService.resetPassword(resetObj).subscribe({
-        next: (res) => {
+        next: () => {
           console.log('Password Reset Successfully');
           this.router.navigate(['/login']);
         },

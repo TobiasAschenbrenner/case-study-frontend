@@ -22,7 +22,7 @@ export default class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,7 +34,7 @@ export default class LoginComponent {
 
   login() {
     this.authService.login(this.loginForm.value).subscribe({
-      next: (res) => {
+      next: () => {
         console.log('User Logged In Successfully');
         this.router.navigate(['home']);
         this.loginForm.reset();

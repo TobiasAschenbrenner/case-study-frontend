@@ -23,7 +23,7 @@ export default class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.registerForm = this.fb.group(
       {
@@ -45,7 +45,7 @@ export default class RegisterComponent implements OnInit {
       },
       {
         validator: confirmPasswordValidator('password', 'confirmPassword'),
-      }
+      },
     );
   }
 
@@ -53,7 +53,7 @@ export default class RegisterComponent implements OnInit {
 
   register() {
     this.authService.register(this.registerForm.value).subscribe({
-      next: (registerRes) => {
+      next: () => {
         console.log('User Created Successfully');
 
         const loginCredentials = {
@@ -63,7 +63,7 @@ export default class RegisterComponent implements OnInit {
         this.registerForm.reset();
 
         this.authService.login(loginCredentials).subscribe({
-          next: (loginRes) => {
+          next: () => {
             console.log('User Logged In Successfully');
             this.router.navigate(['home']);
           },
